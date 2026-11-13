@@ -162,7 +162,7 @@ public class frmListing extends javax.swing.JFrame {
         int option = JOptionPane.showConfirmDialog(null,"Are you sure?", "Confirm action!", JOptionPane.OK_CANCEL_OPTION);
         
         if(option==JOptionPane.OK_OPTION){
-            JOptionPane.showMessageDialog(null, "The application will not shutdown.", "System reply", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "The application will now shutdown.", "System reply", JOptionPane.PLAIN_MESSAGE);
             System.exit(0);
         }
         
