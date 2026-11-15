@@ -1,0 +1,49 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package cms;
+
+import java.io.Serializable;
+
+/**
+ *
+ * @author fernandoenad
+ */
+public class Contact implements Serializable{
+    private static final long serialVersionUID = 1L;
+    
+    private String phoneNumber;
+    private String firstname;
+    private String lastname;
+
+    public Contact(String phoneNumber, String firstname, String lastname) {
+        this.phoneNumber = phoneNumber;
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+}
