@@ -37,5 +37,8 @@ public class Group implements Serializable{
         this.groupName = groupName;
     }
     
+    public String toString() {
+        return this.groupName;
+    }
     
 }

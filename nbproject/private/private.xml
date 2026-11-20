@@ -3,13 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/fernandoenad/NetBeansProjects/fenad2026t2/src/cms/Contact.java</file>
-            <file>file:/Users/fernandoenad/NetBeansProjects/fenad2026t2/src/cms/ContactDAO.java</file>
-            <file>file:/Users/fernandoenad/NetBeansProjects/fenad2026t2/src/cms/ContactDAOImpl.java</file>
-            <file>file:/Users/fernandoenad/NetBeansProjects/fenad2026t2/src/cms/Main.java</file>
-            <file>file:/Users/fernandoenad/NetBeansProjects/fenad2026t2/src/cms/FrmMain.java</file>
-            <file>file:/Users/fernandoenad/NetBeansProjects/fenad2026t2/src/cms/FrmNewContact.java</file>
-            <file>file:/Users/fernandoenad/NetBeansProjects/fenad2026t2/src/cms/FrmEditContact.java</file>
+            <file>file:/Users/fernandoenad/NetBeansProjects/fenad2026t2/src/cmsa/FrmMain2.java</file>
+            <file>file:/Users/fernandoenad/NetBeansProjects/fenad2026t2/src/cmsa/FrmContactNew.java</file>
+            <file>file:/Users/fernandoenad/NetBeansProjects/fenad2026t2/src/cmsa/FrmMain.java</file>
         </group>
     </open-files>
 </project-private>

@@ -36,7 +36,7 @@ public class FrmContactNew extends javax.swing.JDialog {
     
     public void loadGroups(){
         for(Group group : this.groups){
-            cbGroupId.addItem(group.getGroupId());
+            cbGroupId.addItem(group);
         }
     }
     /**
@@ -137,13 +137,15 @@ public class FrmContactNew extends javax.swing.JDialog {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        Group selectedGroup = (Group) cbGroupId.getSelectedItem();
+        
         int option = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirm save", JOptionPane.OK_CANCEL_OPTION);
         
         if(option == JOptionPane.OK_OPTION){
             String phoneNumber = tfPhoneNumber.getText();
             String firstname = tfFirstname.getText();
             String lastname = tfLastname.getText();
-            String groupId = cbGroupId.getSelectedItem().toString();
+            String groupId = selectedGroup.getGroupId();
             this.contact = new Contact(phoneNumber, firstname, lastname, groupId);
             
             this.dispose();
@@ -195,7 +197,7 @@ public class FrmContactNew extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnSave;
-    private javax.swing.JComboBox<String> cbGroupId;
+    private javax.swing.JComboBox<Group> cbGroupId;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

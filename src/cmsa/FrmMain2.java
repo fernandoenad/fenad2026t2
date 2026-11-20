@@ -33,11 +33,12 @@ public class FrmMain2 extends javax.swing.JFrame {
         
         if(keyword.equals("*")){
             for(Contact contact : this.contactDAOImpl.getAllContacts()){
+                int index = this.groupDAOImpl.getIndex(contact.getGroupId());
                 model.addRow(new Object[]{
                     contact.getPhoneNumber(), 
                     contact.getFirstname(), 
                     contact.getLastname(),
-                    contact.getGroupId()});
+                    this.groupDAOImpl.getAllGroups().get(index).getGroupName()});
             }
         } else {
             for(Contact contact : this.contactDAOImpl.searchContacts(keyword)){
@@ -123,7 +124,7 @@ public class FrmMain2 extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Phone Number", "Fistname", "Lastname", "Group ID"
+                "Phone Number", "Fistname", "Lastname", "Group Name"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -310,7 +311,7 @@ public class FrmMain2 extends javax.swing.JFrame {
         int index = contactDAOImpl.getIndex(this.phoneNumber);
         Contact contact = contactDAOImpl.getAllContacts().get(index);
         
-        FrmContactEdit frmEditContact = new FrmContactEdit(this, true, contact);
+        FrmContactEdit frmEditContact = new FrmContactEdit(this, true, contact, this.groupDAOImpl.getAllGroups());
         frmEditContact.setVisible(true);
         
         if(frmEditContact.getUpdated() == false){
@@ -396,6 +397,7 @@ public class FrmMain2 extends javax.swing.JFrame {
         
         if(this.groupDAOImpl.updateGroup(this.groupId, frmGroupEdit.getGroup()) == true){
             loadGroups("*");
+            loadContacts("*");
             JOptionPane.showMessageDialog(null, "Group successfully updated!", "System information", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "Error encountered, group not udpated!", "System information", JOptionPane.WARNING_MESSAGE);

@@ -5,6 +5,7 @@
 package cmsa;
 
 import cms.*;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,15 +17,19 @@ public class FrmContactEdit extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmContactEdit.class.getName());
     private Contact contact;
     private boolean updated=false;
+    private List<Group> groups;
 
     /**
      * Creates new form frmNewContact
      */
-    public FrmContactEdit(java.awt.Frame parent, boolean modal, Contact contact) {
+    public FrmContactEdit(java.awt.Frame parent, boolean modal, Contact contact, List<Group> groups) {
         super(parent, modal);
         initComponents();
         
         this.contact = contact;
+        this.groups = groups;
+        loadGroups();
+        
         loadContact();
     }
 
@@ -40,6 +45,13 @@ public class FrmContactEdit extends javax.swing.JDialog {
         tfPhoneNumber.setText(this.contact.getPhoneNumber());
         tfFirstname.setText(this.contact.getFirstname());
         tfLastname.setText(this.contact.getLastname());
+        cbGroupId.setSelectedItem(this.contact.getGroupId());
+    }
+    
+    public void loadGroups(){
+        for(Group group : this.groups){
+            cbGroupId.addItem(group);
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,6 +70,8 @@ public class FrmContactEdit extends javax.swing.JDialog {
         tfLastname = new javax.swing.JTextField();
         btnUpdate = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        cbGroupId = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("CMS | Edit Contact");
@@ -75,6 +89,8 @@ public class FrmContactEdit extends javax.swing.JDialog {
 
         btnClose.setText("Close");
         btnClose.addActionListener(this::btnCloseActionPerformed);
+
+        jLabel4.setText("Group ID:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,7 +115,11 @@ public class FrmContactEdit extends javax.swing.JDialog {
                                 .addComponent(btnUpdate)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnClose))
-                            .addComponent(tfLastname, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(tfLastname, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbGroupId, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -119,9 +139,13 @@ public class FrmContactEdit extends javax.swing.JDialog {
                     .addComponent(tfLastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(cbGroupId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate)
                     .addComponent(btnClose))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -130,6 +154,9 @@ public class FrmContactEdit extends javax.swing.JDialog {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        Group selectedGroup = (Group) cbGroupId.getSelectedItem();
+        String groupId = selectedGroup.getGroupId();
+        
         int option = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirm update", JOptionPane.OK_CANCEL_OPTION);
         
         if(option == JOptionPane.OK_OPTION){
@@ -137,7 +164,7 @@ public class FrmContactEdit extends javax.swing.JDialog {
             String lastname = tfLastname.getText();
             this.contact.setFirstname(firstname);
             this.contact.setLastname(lastname);
-            
+            this.contact.setGroupId(groupId);
             this.updated=true;
             this.dispose();
         } 
@@ -174,7 +201,7 @@ public class FrmContactEdit extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                FrmContactEdit dialog = new FrmContactEdit(new javax.swing.JFrame(), true, null);
+                FrmContactEdit dialog = new FrmContactEdit(new javax.swing.JFrame(), true, null, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -189,9 +216,11 @@ public class FrmContactEdit extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<Group> cbGroupId;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField tfFirstname;
     private javax.swing.JTextField tfLastname;
     private javax.swing.JTextField tfPhoneNumber;

@@ -176,7 +176,7 @@ public class FrmMain extends javax.swing.JFrame {
         int index = contactDAOImpl.getIndex(this.phoneNumber);
         Contact contact = contactDAOImpl.getAllContacts().get(index);
         
-        FrmContactEdit frmEditContact = new FrmContactEdit(this, true, contact);
+        FrmContactEdit frmEditContact = new FrmContactEdit(this, true, contact, null);
         frmEditContact.setVisible(true);
         
         if(frmEditContact.getUpdated() == false){
